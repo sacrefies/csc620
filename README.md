@@ -1,2 +1,2 @@
 # csc620
-ER diagrams and SQL projects driven by Course CSC620 - Database Systems
+Internet application projects driven by course CSC620 - Internet Application Development
