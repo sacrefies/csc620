@@ -11,7 +11,7 @@ var errorPassword = '1+ uppercase letter expected;\n1+ digit expected;\n1+ one o
 /**
  * Return the form validation final state.
  */
-var setFinalState = function(passed) {
+var setFinalState = function (passed) {
     if (passed) {
         // set error state off
         element('lblError').style.display = 'none';
@@ -29,7 +29,7 @@ var setFinalState = function(passed) {
 /**
  * Validate a credit card number with a required length.
  */
-var validateCardNumber = function(length, cardNumber) {
+var validateCardNumber = function (length, cardNumber) {
     if (length == 0) return false;
 
     cardNumber = cardNumber.trim();
@@ -44,7 +44,7 @@ var validateCardNumber = function(length, cardNumber) {
  * Validate an email address.
  * The pattern it uses is from http://jsfiddle.net/ghvj4gy9/embedded/result,js/
  */
-var validateEmailAddress = function(email) {
+var validateEmailAddress = function (email) {
     // see http://jsfiddle.net/ghvj4gy9/embedded/result,js/
     var pat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return pat.test(email);
@@ -54,7 +54,7 @@ var validateEmailAddress = function(email) {
 /**
  * Validate a password
  */
-var validatePassword = function(password) {
+var validatePassword = function (password) {
     var pat = /(?=.*\d)(?=.*[A-Z])(?=.*\W)^[\S\W\d\w]{6,}/;
     return pat.test(password);
 }
@@ -64,7 +64,7 @@ var validatePassword = function(password) {
  * Get one input element's parent container <div> element id by given the input
  * element's id
  */
-var getContainerId = function(inputId) {
+var getContainerId = function (inputId) {
     return inputId.trim().replace(/input/, 'div');
 }
 
@@ -72,7 +72,7 @@ var getContainerId = function(inputId) {
 /**
  * Highlight the specified element as invalid state
  */
-var setInvalidElementState = function(inputId) {
+var setInvalidElementState = function (inputId) {
     var containerId = getContainerId(inputId);
     clearHighlightedElementState(containerId);
     addClass(containerId, classHasError);
@@ -82,7 +82,7 @@ var setInvalidElementState = function(inputId) {
 /**
  * Clear any highlighted state of the specified element
  */
-var clearHighlightedElementState = function(inputId) {
+var clearHighlightedElementState = function (inputId) {
     var containerId = getContainerId(inputId);
     if (hasClass(containerId, classHasError))
         removeClass(containerId, classHasError);
@@ -94,7 +94,7 @@ var clearHighlightedElementState = function(inputId) {
 /**
  * Highlight the specified element as valid state
  */
-var setValidElementState = function(inputId) {
+var setValidElementState = function (inputId) {
     var containerId = getContainerId(inputId);
     clearHighlightedElementState(inputId);
     addClass(containerId, classHasSuccess);
@@ -104,37 +104,37 @@ var setValidElementState = function(inputId) {
 /**
  * Validate an input element of a form and set its validity state
  */
-var checkFormInput = function(id) {
+var checkFormInput = function (id) {
     var el = element(id);
     var key = id.trim().substr(5).toLowerCase();
 
     clearHighlightedElementState(id);
     switch (key) {
-        case 'creditcard':
-            var types = element('selectCardTypes');
-            var fix = parseInt(types.options[types.selectedIndex].value);
-            if(!validateCardNumber(fix, el.value)) {
-                setInvalidElementState(id);
-                el.setCustomValidity(errorCard);
-                return false;
-            }
-            break;
-        case 'email':
-            if(!validateEmailAddress(el.value)) {
-                setInvalidElementState(id);
-                el.setCustomValidity(errorEmail);
-                return false;
-            }
-            break;
-        case 'password':
-            if(!validatePassword(el.value)) {
-                setInvalidElementState(id);
-                el.setCustomValidity(errorPassword);
-                return false;
-            }
-            break;
-        default:
+    case 'creditcard':
+        var types = element('selectCardTypes');
+        var fix = parseInt(types.options[types.selectedIndex].value);
+        if (!validateCardNumber(fix, el.value)) {
+            setInvalidElementState(id);
+            el.setCustomValidity(errorCard);
             return false;
+        }
+        break;
+    case 'email':
+        if (!validateEmailAddress(el.value)) {
+            setInvalidElementState(id);
+            el.setCustomValidity(errorEmail);
+            return false;
+        }
+        break;
+    case 'password':
+        if (!validatePassword(el.value)) {
+            setInvalidElementState(id);
+            el.setCustomValidity(errorPassword);
+            return false;
+        }
+        break;
+    default:
+        return false;
     }
 
     setValidElementState(id);
@@ -145,18 +145,18 @@ var checkFormInput = function(id) {
 /**
  * Clear all custom validation messages
  */
- var clearAllInputsCustomValidity = function() {
-     var form = element('simpleForm');
-     var inputs = form.getElementsByTagName('input');
-     for (index = 0; index < inputs.length; ++index)
+var clearAllInputsCustomValidity = function () {
+    var form = element('simpleForm');
+    var inputs = form.getElementsByTagName('input');
+    for (index = 0; index < inputs.length; ++index)
         inputs[index].setCustomValidity('');
- }
+}
 
 
 /**
  * Exec form submission event handler
  */
-var submit_click = function(e) {
+var submit_click = function (e) {
     e.preventDefault();
 
     var form = element('simpleForm');
@@ -179,7 +179,7 @@ var submit_click = function(e) {
 }
 
 
-var submit_button_click = function(e) {
+var submit_button_click = function (e) {
     clearAllInputsCustomValidity();
     var form = element('simpleForm');
 

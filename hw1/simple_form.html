@@ -1,77 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="CSC620 homework 1 and my first bootstrap build-up attempt">
-    <meta name="author" content="Jason Qiao Meng">
-    <meta name="sju_id" content="10652564">
-    <meta name="email" content="jm652564@sju.edu">
 
-    <title>A Simple Web Form Validation and my First Bootstrap Application</title>
-    <!-- Bootstrap core CSS-->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script -->
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- script src="script/bootstrap.min.js" type="text/javascript"></script -->
-    <!-- Include all custom javascripts for form validation -->
-    <script src="script/tools.common.js" type="text/javascript"></script>
-    <script src="script/element.css.js" type="text/javascript"></script>
-    <script src="script/form.validator.js" type="text/javascript"></script>
-    <script src="script/event.handlers.register.js" type="text/javascript"></script>
-  </head>
-  <body>
-    <div class="page-header" style="text-align:center">
-      <h1>Please fill out the fields</h1>
-    </div>
-    <div class="container">
-      <form id="simpleForm" class="form-horizontal">
-        <div class="form-group" id="divCardTypes">
-            <label for="selectCardTypes" class="control-label col-sm-2">Credit card type:</label>
-            <div class="col-sm-10">
-                <select class="form-control" name="selectCardTypes" id="selectCardTypes" required>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="CSC620 homework 1 and my first bootstrap build-up attempt">
+  <meta name="author" content="Jason Qiao Meng">
+  <meta name="sju_id" content="10652564">
+  <meta name="email" content="jm652564@sju.edu">
+
+  <title>A Simple Web Form Validation and my First Bootstrap Application</title>
+  <!-- Bootstrap core CSS-->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script -->
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- script src="script/bootstrap.min.js" type="text/javascript"></script -->
+  <!-- Include all custom javascripts for form validation -->
+  <script src="script/tools.common.js" type="text/javascript"></script>
+  <script src="script/element.css.js" type="text/javascript"></script>
+  <script src="script/form.validator.js" type="text/javascript"></script>
+  <script src="script/event.handlers.register.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="page-header" style="text-align:center">
+    <h1>Please fill out the fields</h1>
+  </div>
+  <div class="container">
+    <form id="simpleForm" class="form-horizontal">
+      <div class="form-group" id="divCardTypes">
+        <label for="selectCardTypes" class="control-label col-sm-2">Credit card type:</label>
+        <div class="col-sm-10">
+          <select class="form-control" name="selectCardTypes" id="selectCardTypes" required>
                     <option value="16">Visa</option>
                     <option value="16">Master</option>
                     <option value="16" selected>Discover</option>
                     <option value="15">American Express</option>
                 </select>
-            </div>
         </div>
-        <div class="form-group" id="divCreditCard">
-            <label for="inputCreditCard" class="control-label col-sm-2">Credit card:</label>
-            <div class="col-sm-10">
-                <input id="inputCreditCard" class="form-control" type="number" autofocus required placeholder="1234567890654321" />
-            </div>
+      </div>
+      <div class="form-group" id="divCreditCard">
+        <label for="inputCreditCard" class="control-label col-sm-2">Credit card:</label>
+        <div class="col-sm-10">
+          <input id="inputCreditCard" class="form-control" type="number" autofocus required placeholder="1234567890654321" />
         </div>
-        <div class="form-group" id="divEmail">
-          <label for="inputEmail" class="control-label col-sm-2">Email address:</label>
-          <div class="col-sm-10">
-            <input type="email" id="inputEmail" class="form-control" placeholder="someone@example.com" required autofocus />
-          </div>
+      </div>
+      <div class="form-group" id="divEmail">
+        <label for="inputEmail" class="control-label col-sm-2">Email address:</label>
+        <div class="col-sm-10">
+          <input type="email" id="inputEmail" class="form-control" placeholder="someone@example.com" required autofocus />
         </div>
-        <div class="form-group" id="divPassword">
-          <label for="inputPassword" class="control-label col-sm-2">Password:</label>
-          <div class="col-sm-10">
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus />
-          </div>
+      </div>
+      <div class="form-group" id="divPassword">
+        <label for="inputPassword" class="control-label col-sm-2">Password:</label>
+        <div class="col-sm-10">
+          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required autofocus />
         </div>
-        <div class="form-group" id="divSubmit">
-          <div class="col-sm-2">
-            <h4 style="text-align:right">
+      </div>
+      <div class="form-group" id="divSubmit">
+        <div class="col-sm-2">
+          <h4 style="text-align:right">
               <lable for="inputSubmit" id="lblSuccess" class="label label-success" style="display:none">Success</label>
             </h4>
-            <h4 style="text-align:right">
+          <h4 style="text-align:right">
               <lable for="inputSubmit" id="lblError" class="label label-danger" style="display:none">Error</label>
             </h4>
-          </div>
-          <div class="col-sm-10">
-            <button class="btn btn-lg btn-primary" type="submit" id="inputSubmit">Submit</button>
-          </div>
         </div>
-      </form>
-    </div>
-  </body>
+        <div class="col-sm-10">
+          <button class="btn btn-lg btn-primary" type="submit" id="inputSubmit">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
+
 </html>
