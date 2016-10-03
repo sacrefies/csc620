@@ -1,0 +1,65 @@
+<?php
+require_once('mysqlDB.php');
+require_once('settings.php');
+ ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="Twitter Search: CSC620 homework 2">
+  <meta name="author" content="Jason Qiao Meng">
+  <meta name="sju_id" content="10652564">
+  <meta name="email" content="jm652564@sju.edu">
+
+  <title>Twitter Search: CSC620 homework </title>
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <!-- Bootstrap core JS -->
+  <script src="script/bootstrap.min.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="page-header" style="text-align:center">
+    <h1>Twitter Search Result</h1>
+    <h2>Upon keywords: <?php echo $_GET['keywords']; ?></h2>
+  </div>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Tweeter</th>
+          <th>Time</th>
+          <th>Tweet</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- PHP code generates the rows -->
+        <?php
+        global $dsn;
+        global $username;
+        global $dbpass;
+
+        $sql = "SELECT user, avatar, tweet, twit_time FROM tweet order by twit_time desc";
+        $db = new MySQLDB($dsn, $username, $dbpass);
+        $db->connect();
+        $cursor = $db->query($sql);
+
+        while ($row = $cursor->fetch(PDO::FETCH_ASSOC)) {
+            echo "<tr>";
+            echo "<td><img class='img-rounded' src='", $row['avatar'], "'/><br/><span>", $row['user'], "</span></td>";
+            echo "<td>", $row['tweet'], "</td>";
+            echo "<td>", $row['twit_time'], "</td>";
+            echo "</tr>";
+        }
+        $db->disconnect();
+        ?>
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
